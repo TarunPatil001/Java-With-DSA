@@ -2,55 +2,15 @@ import java.util.*;
 
 public class StackB {
 
-    // static class Node {
-    // int data;
-    // Node next;
-
-    // public Node(int data) {
-    // this.data = data;
-    // this.next = null;
-    // }
-    // }
-
-    // static class Stack {
-    // static Node head = null;
-
-    // public static boolean isEmpty() {
-    // return head == null;
-    // }
-
-    // public static void push(int data) {
-    // Node newNode = new Node(data); // created Node
-
-    // if (isEmpty()) { // Checking whether the stack is empty or not.
-    // head = newNode; // Assigning newNode as head.
-    // return;
-    // }
-
-    // newNode.next = head;
-    // head = newNode;
-    // }
-
-    // public static int pop() {
-    // if (isEmpty()) { // Checking whether the stack is empty or not.
-    // return -1;
-    // }
-
-    // int top = head.data;
-    // head = head.next; // Assigning head to next element. Next element is
-    // head.next.
-    // return top;
-    // }
-
-    // public static int peek() {
-    // if (isEmpty()) {
-    // return -1;
-    // }
-
-    // return head.data;
-    // }
-
-    // }
+    public static void pushAtBottom(Stack<Integer> s, int data) {
+        if (s.isEmpty()) {
+            s.push(data);
+            return;
+        }
+        int top = s.pop();
+        pushAtBottom(s, data);
+        s.push(top);
+    }
 
     public static void main(String args[]) {
 
@@ -59,9 +19,10 @@ public class StackB {
         s.push(2);
         s.push(3);
 
+        pushAtBottom(s, 4);
+
         while (!s.isEmpty()) {
-            System.out.println(s.peek());
-            s.pop();
+            System.out.println(s.pop());
         }
     }
 }
