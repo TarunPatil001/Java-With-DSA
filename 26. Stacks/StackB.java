@@ -2,33 +2,51 @@ import java.util.ArrayList;
 
 public class StackB {
 
+    static class Node {
+        int data;
+        Node next;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
     static class Stack {
+        static Node head = null;
 
-        static ArrayList<Integer> list = new ArrayList<>();
-
-        // isEmpty Function
         public static boolean isEmpty() {
-            return list.size() == 0;
+            return head == null;
         }
 
-        // Push Operation
         public static void push(int data) {
-            list.add(data);
+            Node newNode = new Node(data); // created Node
+
+            if (isEmpty()) { // Checking whether the stack is empty or not.
+                head = newNode; // Assigning newNode as head.
+                return;
+            }
+
+            newNode.next = head;
+            head = newNode;
         }
 
-        // Pop Operation
         public static int pop() {
-            // Cornor Case
-            if (isEmpty()) {
+            if (isEmpty()) { // Checking whether the stack is empty or not.
                 return -1;
             }
-            int top = list.get(list.size() - 1);
-            list.remove(list.size() - 1);
+
+            int top = head.data;
+            head = head.next; // Assigning head to next element. Next element is head.next.
             return top;
         }
 
         public static int peek() {
-            return list.get(list.size() - 1);
+            if (isEmpty()) {
+                return -1;
+            }
+
+            return head.data;
         }
 
     }
